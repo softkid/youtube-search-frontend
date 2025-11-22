@@ -1,0 +1,170 @@
+.video-table-wrapper {
+  overflow-x: auto;
+}
+
+.video-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.video-table thead {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.video-table th {
+  padding: 1rem 0.75rem;
+  text-align: left;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.video-table tbody tr {
+  border-bottom: 1px solid #e0e0e0;
+  transition: background-color 0.2s;
+}
+
+.video-table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.video-table td {
+  padding: 1rem 0.75rem;
+  vertical-align: top;
+}
+
+.table-thumbnail {
+  width: 120px;
+  height: 68px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.table-title {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.25rem;
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.table-description {
+  font-size: 0.85rem;
+  color: #666;
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.number-cell {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.table-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  max-width: 200px;
+}
+
+.table-tag {
+  padding: 0.2rem 0.4rem;
+  background: #e3f2fd;
+  color: #1976d2;
+  border-radius: 3px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+.table-tag-more {
+  padding: 0.2rem 0.4rem;
+  background: #f5f5f5;
+  color: #666;
+  border-radius: 3px;
+  font-size: 0.75rem;
+}
+
+.table-link {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.table-link:hover {
+  color: #764ba2;
+}
+
+.table-action-buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.table-action-button {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  border: none;
+  color: white;
+}
+
+.table-analyze-button {
+  background: #3498db;
+}
+
+.table-analyze-button:hover {
+  background: #2980b9;
+}
+
+.table-transcript-button {
+  background: #27ae60;
+}
+
+.table-transcript-button:hover {
+  background: #229954;
+}
+
+.table-comments-button {
+  background: #e67e22;
+}
+
+.table-comments-button:hover {
+  background: #d35400;
+}
+
+.channel-link {
+  color: #667eea;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.channel-link:hover {
+  color: #764ba2;
+}
+
+@media (max-width: 1200px) {
+  .video-table {
+    font-size: 0.85rem;
+  }
+  
+  .video-table th,
+  .video-table td {
+    padding: 0.75rem 0.5rem;
+  }
+  
+  .table-thumbnail {
+    width: 80px;
+    height: 45px;
+  }
+}
+

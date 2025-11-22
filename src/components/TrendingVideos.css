@@ -1,0 +1,42 @@
+.trending-videos-section {
+  margin-bottom: 3rem;
+  padding: 1.5rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+}
+
+.trending-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.trending-subtitle {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #666;
+}
+
+.trending-videos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.trending-loading {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .trending-videos-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
