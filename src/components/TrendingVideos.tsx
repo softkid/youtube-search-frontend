@@ -5,7 +5,7 @@ import './TrendingVideos.css'
 interface TrendingVideosProps {
   videos: VideoData[]
   loading: boolean
-  regionCode: string
+  regionCode?: string
   categoryId?: string
   onAnalyze?: (videoId: string, videoTitle: string) => void
   onChannelClick?: (channelId: string, channelTitle: string) => void
@@ -23,7 +23,9 @@ function TrendingVideos({ videos, loading, regionCode, categoryId, onAnalyze, on
     )
   }
 
-  if (videos.length === 0) {
+  const displayRegionCode = regionCode || 'US'
+
+  if (!loading && videos.length === 0) {
     return null
   }
 
@@ -32,7 +34,7 @@ function TrendingVideos({ videos, loading, regionCode, categoryId, onAnalyze, on
       <h2 className="trending-title">
         트렌딩 비디오
         {categoryId && <span className="trending-subtitle"> (카테고리: {categoryId})</span>}
-        <span className="trending-subtitle"> (지역: {regionCode})</span>
+        <span className="trending-subtitle"> (지역: {displayRegionCode})</span>
       </h2>
       <div className="trending-videos-grid">
         {videos.map(video => (

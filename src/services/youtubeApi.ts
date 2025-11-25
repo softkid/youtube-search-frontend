@@ -4,7 +4,7 @@ import { formatDuration, parseISO8601Duration } from '../utils/duration'
 import { subDays } from 'date-fns'
 
 // YouTube MCP Server API URL
-const MCP_SERVER_URL = import.meta.env.VITE_MCP_SERVER_URL || 'http://localhost:3000'
+const MCP_SERVER_URL = import.meta.env.VITE_MCP_SERVER_URL || 'https://youtube-mcp-server.goodprogram.workers.dev'
 
 // YouTube MCP Server API를 통해 비디오 검색
 export async function searchVideos(query: string, filters: FilterOptions): Promise<VideoData[]> {
@@ -118,11 +118,29 @@ export async function getTrendingVideos(regionCode: string = 'US', categoryId?: 
       regionCode,
       categoryId,
       maxResults
+    }, {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      timeout: 30000 // 30초 타임아웃
     })
     return response.data.items || []
-  } catch (error) {
+  } catch (error: any) {
     console.error('Trending videos error:', error)
-    throw error
+    if (error.response) {
+      // 서버 응답이 있는 경우
+      console.error('Response status:', error.response.status)
+      console.error('Response data:', error.response.data)
+      throw new Error(`API Error: ${error.response.status} - ${error.response.data?.error || error.response.statusText}`)
+    } else if (error.request) {
+      // 요청은 보냈지만 응답을 받지 못한 경우
+      console.error('No response received:', error.request)
+      throw new Error('Network Error: 서버에 연결할 수 없습니다. Cloudflare Access 설정을 확인해주세요.')
+    } else {
+      // 요청 설정 중 오류가 발생한 경우
+      console.error('Error setting up request:', error.message)
+      throw new Error(`Request Error: ${error.message}`)
+    }
   }
 }
 

@@ -30,7 +30,7 @@ function App() {
     videoId: '',
     videoTitle: ''
   })
-  const [regionCode, setRegionCode] = useState<string | undefined>(undefined)
+  const [regionCode, setRegionCode] = useState<string | undefined>('US') // 기본값을 'US'로 설정
   const [categoryId, setCategoryId] = useState<string | undefined>(undefined)
   const [trendingVideos, setTrendingVideos] = useState<VideoData[]>([])
   const [trendingLoading, setTrendingLoading] = useState(false)
@@ -121,17 +121,18 @@ function App() {
   // 지역 또는 카테고리 변경 시 트렌딩 비디오 로드
   useEffect(() => {
     const loadTrendingVideos = async () => {
-      if (!regionCode) {
-        setTrendingVideos([])
-        setTrendingLoading(false)
-        return
-      }
+      // regionCode가 없으면 기본값 'US' 사용
+      const regionToUse = regionCode || 'US'
       setTrendingLoading(true)
       try {
-        const trending = await getTrendingVideos(regionCode, categoryId, 10)
+        const trending = await getTrendingVideos(regionToUse, categoryId, 10)
         setTrendingVideos(trending)
-      } catch (error) {
+      } catch (error: any) {
         console.error('Failed to load trending videos:', error)
+        // 에러 메시지가 있으면 표시
+        if (error.message) {
+          alert(`트렌딩 비디오 로드 실패: ${error.message}`)
+        }
         setTrendingVideos([])
       } finally {
         setTrendingLoading(false)
